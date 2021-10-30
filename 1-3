@@ -1,0 +1,57 @@
+#include<iostream>
+#include <ctime>
+using namespace std;
+void one(int *array, int size, int a, int b) {
+	array[0] = a;
+	for (int i = 1; i < size; i++) {
+		array[i] = a + i * b;
+	}
+}
+void two(int *array, int size) {
+	for (int i = 0; i < size; i++) {
+		array[i] = i+1;
+	}
+	int temp;
+	int pred;
+	srand(time(0));
+	for (int i = 0; i <size; i++) {
+		temp = rand() % size;
+		pred = array[i];
+		array[i] = array[temp];
+		array[temp] = pred;
+	}
+}
+void three(int* array, int size) {
+	srand(time(0));
+	for (int i = 0; i < size; i++) {
+		array[i] = rand() % 1001 + 1000;
+	}
+}
+void three2(int *array,int size){
+	int k;
+	k = 0;
+	for ( int i=0;i<size;i++)
+	if (((array[i] % 100) / 10) % 2 == 0) {
+		k = k + 1;
+	}
+	cout << k<<endl;
+}
+void print_array(int *array, int size) {
+	for (int i = 0; i < size; i++) {
+		cout << array[i] << " ";
+	}
+	cout << endl;
+}
+int main() {
+	int a; int b; int size;
+	cin >> a; cin >> b; cin >> size;
+	int* array = new int[size];
+	one(array, size, a, b);
+	print_array(array, size);
+	two(array, size);
+	print_array(array, size);
+	three(array, size);
+	three2(array, size);
+	print_array(array, size);
+	delete array;
+}
